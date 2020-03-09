@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import AlamofireImage
+import Alamofire
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -77,10 +78,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
-            
             let comment = comments[indexPath.row - 1]
-            cell.commentLabel.text = comment["text"] as! String
             
+            cell.commentLabel.text = comment["text"] as? String
             let user = comment["author"] as! PFUser
             cell.nameLabel.text = user.username
             
